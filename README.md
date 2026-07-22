@@ -57,3 +57,7 @@ Improvement
 | developer-roadmap | 학습 문서 및 로드맵 |
 | developer-labs | 기술 실험 및 검증 |
 | commerce-platform | 기술을 적용하는 메인 프로젝트 |
+
+## 📝 Git 컨벤션
+
+커밋 메시지 규칙 및 브랜치 전략은 [developer-roadmap/docs/conventions.md](../developer-roadmap/docs/conventions.md)를 참고하세요.
