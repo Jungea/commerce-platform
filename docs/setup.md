@@ -26,9 +26,27 @@
 
 ```bash
 cd commerce-platform
-docker compose up -d      # 컨테이너 실행
-docker ps                 # 실행 확인
-docker compose down       # 컨테이너 종료 (데이터는 volume에 보존됨)
+
+# 컨테이너 실행 (백그라운드)
+docker compose up -d
+
+# 실행 중인 컨테이너 목록 확인
+docker ps
+
+# 컨테이너 로그 확인
+docker logs commerce-mysql
+
+# 컨테이너 종료 (데이터는 volume에 보존됨)
+docker compose down
+
+# 컨테이너 종료 + volume까지 삭제 (데이터 초기화 시)
+docker compose down -v
+
+# MySQL 접속 (컨테이너 내부)
+docker exec -it commerce-mysql mysql -uroot -p1234
+
+# 볼륨 목록 확인
+docker volume ls
 ```
 
 접속 정보 (local 프로필 기준):
