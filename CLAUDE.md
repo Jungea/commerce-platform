@@ -11,10 +11,24 @@
 
 ```
 src/main/java/
-└── com/commerce/
-    ├── domain/         # 도메인 엔티티, 레포지토리 인터페이스
-    ├── application/    # 서비스, 유스케이스
-    └── api/            # 컨트롤러, DTO, 요청/응답
+└── org/example/commerceplatform/
+    ├── member/
+    │   ├── domain/         # 엔티티, 레포지토리 인터페이스
+    │   ├── application/    # 서비스
+    │   └── api/            # 컨트롤러, DTO
+    ├── product/
+    │   ├── domain/
+    │   ├── application/
+    │   └── api/
+    ├── cart/
+    │   ├── domain/
+    │   ├── application/
+    │   └── api/
+    ├── order/
+    │   ├── domain/
+    │   ├── application/
+    │   └── api/
+    └── common/             # 공통 유틸, 예외, 응답 형식
 ```
 
 ---
