@@ -1,12 +1,15 @@
 package org.example.commerceplatform.member.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "members")
 public class Member {
 
@@ -25,8 +28,6 @@ public class Member {
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
-
-    protected Member() {}
 
     public Member(String email, String password, String name) {
         this.email = email;
