@@ -1,0 +1,38 @@
+### 회원가입
+POST {{baseUrl}}/members
+Content-Type: application/json
+
+{
+  "email": "test-{{$random.uuid}}@example.com",
+  "password": "password123",
+  "name": "홍길동"
+}
+
+### 회원가입 - 이메일 중복 (409 기대)
+POST {{baseUrl}}/members
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123",
+  "name": "홍길동"
+}
+
+### 회원가입 - 유효성 검사 실패 (이메일 형식 오류, 400 기대)
+POST {{baseUrl}}/members
+Content-Type: application/json
+
+{
+  "email": "not-an-email",
+  "password": "password123",
+  "name": "홍길동"
+}
+
+### 회원가입 - 유효성 검사 실패 (필수 필드 누락, 400 기대)
+POST {{baseUrl}}/members
+Content-Type: application/json
+
+{
+  "email": "test2@example.com",
+  "password": ""
+}
