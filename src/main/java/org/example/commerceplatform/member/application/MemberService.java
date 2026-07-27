@@ -1,6 +1,7 @@
 package org.example.commerceplatform.member.application;
 
 import lombok.RequiredArgsConstructor;
+import org.example.commerceplatform.common.exception.AuthenticationFailedException;
 import org.example.commerceplatform.member.domain.Member;
 import org.example.commerceplatform.member.domain.MemberRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,9 +17,9 @@ public class MemberService {
 
     public Member login(String email, String rawPassword) {
         Member member = memberRepository.findByEmail(email)
-                .orElseThrow(() -> new IllegalArgumentException("이메일 또는 비밀번호가 일치하지 않습니다."));
+                .orElseThrow(() -> new AuthenticationFailedException("이메일 또는 비밀번호가 일치하지 않습니다."));
         if (!passwordEncoder.matches(rawPassword, member.getPassword())) {
-            throw new IllegalArgumentException("이메일 또는 비밀번호가 일치하지 않습니다.");
+            throw new AuthenticationFailedException("이메일 또는 비밀번호가 일치하지 않습니다.");
         }
         return member;
     }

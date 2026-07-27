@@ -1,0 +1,37 @@
+### 상품 등록 (201 기대)
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "테스트 상품",
+  "price": 10000,
+  "stockQuantity": 100
+}
+
+### 상품 등록 - 유효성 검사 실패, 음수 가격 (400 기대)
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "테스트 상품",
+  "price": -1,
+  "stockQuantity": 100
+}
+
+### 상품 등록 - 유효성 검사 실패, 이름 누락 (400 기대)
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "price": 10000,
+  "stockQuantity": 100
+}
+
+### 상품 목록 조회 (200 기대)
+GET {{baseUrl}}/products
+
+### 상품 단건 조회 (200 기대)
+GET {{baseUrl}}/products/1
+
+### 상품 단건 조회 - 존재하지 않는 ID (401 기대)
+GET {{baseUrl}}/products/999
