@@ -1,10 +1,13 @@
 package org.example.commerceplatform.cart.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "cart_items")
 public class CartItem {
 
@@ -21,8 +24,6 @@ public class CartItem {
 
     @Column(nullable = false)
     private Integer quantity;
-
-    protected CartItem() {}
 
     public CartItem(Cart cart, Long productId, Integer quantity) {
         this.cart = cart;

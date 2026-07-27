@@ -1,7 +1,9 @@
 package org.example.commerceplatform.order.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "orders")
 public class Order {
 
@@ -24,8 +27,6 @@ public class Order {
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime orderedAt;
-
-    protected Order() {}
 
     public Order(Long memberId) {
         this.memberId = memberId;

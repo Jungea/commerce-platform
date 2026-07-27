@@ -1,10 +1,13 @@
 package org.example.commerceplatform.order.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "order_items")
 public class OrderItem {
 
@@ -24,8 +27,6 @@ public class OrderItem {
 
     @Column(nullable = false)
     private Integer quantity;
-
-    protected OrderItem() {}
 
     public OrderItem(Order order, Long productId, Long price, Integer quantity) {
         this.order = order;
