@@ -14,6 +14,15 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
+    public Member login(String email, String rawPassword) {
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("이메일 또는 비밀번호가 일치하지 않습니다."));
+        if (!passwordEncoder.matches(rawPassword, member.getPassword())) {
+            throw new IllegalArgumentException("이메일 또는 비밀번호가 일치하지 않습니다.");
+        }
+        return member;
+    }
+
     @Transactional
     public Member signUp(String email, String rawPassword, String name) {
         if (memberRepository.existsByEmail(email)) {
