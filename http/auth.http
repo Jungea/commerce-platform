@@ -1,0 +1,36 @@
+### 로그인 성공 (200 기대)
+# 먼저 member.http의 회원가입을 실행해 test@example.com 계정을 만들어두세요
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+### 로그인 실패 - 존재하지 않는 이메일 (401 기대)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "notfound@example.com",
+  "password": "password123"
+}
+
+### 로그인 실패 - 비밀번호 불일치 (401 기대)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "wrongpassword"
+}
+
+### 로그인 실패 - 유효성 검사 실패 (400 기대)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "not-an-email",
+  "password": ""
+}
