@@ -43,7 +43,10 @@ docker compose down
 docker compose down -v
 
 # MySQL 접속 (컨테이너 내부)
-docker exec -it commerce-mysql mysql -uroot -p1234
+docker exec -it commerce-mysql mysql -uroot -p1234 commerce
+
+# 한글이 ???로 보일 경우 charset 옵션 추가
+docker exec -it commerce-mysql mysql -uroot -p1234 --default-character-set=utf8mb4 commerce
 
 # 볼륨 목록 확인
 docker volume ls
@@ -55,6 +58,33 @@ docker volume ls
 - Database: commerce
 - Username: root
 - Password: 1234
+
+## 자주 쓰는 MySQL 명령어
+
+```sql
+-- DB 목록
+show databases;
+
+-- DB 선택
+use commerce;
+
+-- 테이블 목록
+show tables;
+
+-- 테이블 구조 확인
+desc products;
+
+-- 데이터 조회
+select * from products;
+select * from members;
+select * from orders;
+
+-- 데이터 전체 삭제 (구조는 유지)
+truncate table products;
+
+-- 종료
+exit
+```
 
 ## 트러블슈팅
 
