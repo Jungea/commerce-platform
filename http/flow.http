@@ -1,0 +1,51 @@
+### =============================================
+### 전체 플로우 통합 테스트
+### 순서대로 실행: 1 → 2 → 3 → 4 → 5 → 6 → 7
+### =============================================
+
+### 1. 회원가입 (201 기대)
+POST {{baseUrl}}/members
+Content-Type: application/json
+
+{
+  "email": "flow-test@example.com",
+  "password": "password123",
+  "name": "플로우테스터"
+}
+
+### 2. 로그인 (200 기대) — 세션 쿠키가 이후 요청에 자동으로 포함됩니다
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "flow-test@example.com",
+  "password": "password123"
+}
+
+### 3. 상품 등록 (201 기대)
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "테스트 상품",
+  "price": 10000,
+  "stockQuantity": 100
+}
+
+### 4. 상품 목록 조회 (200 기대) — 등록한 상품의 ID를 확인하세요
+GET {{baseUrl}}/products
+
+### 5. 장바구니 담기 (200 기대) — productId는 4번에서 확인한 ID로 변경하세요
+POST {{baseUrl}}/cart/items
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "quantity": 2
+}
+
+### 6. 장바구니 조회 (200 기대) — 담긴 상품 확인
+GET {{baseUrl}}/cart
+
+### 7. 주문 생성 (201 기대) — 장바구니 항목이 주문으로 변환됩니다
+POST {{baseUrl}}/orders

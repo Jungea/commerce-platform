@@ -1,0 +1,31 @@
+### 장바구니 상품 추가 (200 기대)
+# 먼저 auth.http의 로그인을 실행해 세션을 만들어두세요
+POST {{baseUrl}}/cart/items
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "quantity": 2
+}
+
+### 장바구니 조회 (200 기대)
+GET {{baseUrl}}/cart
+
+### 장바구니 추가 - 유효성 검사 실패, 수량 0 (400 기대)
+POST {{baseUrl}}/cart/items
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "quantity": 0
+}
+
+### 장바구니 추가 - 로그인 안 한 상태 (401 기대)
+# 세션 없이 요청
+POST {{baseUrl}}/cart/items
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "quantity": 1
+}
