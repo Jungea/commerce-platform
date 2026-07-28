@@ -33,5 +33,5 @@ GET {{baseUrl}}/products
 ### 상품 단건 조회 (200 기대)
 GET {{baseUrl}}/products/1
 
-### 상품 단건 조회 - 존재하지 않는 ID (401 기대)
+### 상품 단건 조회 - 존재하지 않는 ID (404 기대)
 GET {{baseUrl}}/products/999
